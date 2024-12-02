@@ -8,11 +8,13 @@ pub fn part_1() -> () {
     let mut first_set: Vec<usize> = Vec::new();
     let mut second_set: Vec<usize> = Vec::new();
     for (i, entry) in input_data.iter().enumerate() {
-        let entry = entry.trim().parse::<usize>().expect("Can't convert to usize");
+        let entry = entry
+            .trim()
+            .parse::<usize>()
+            .expect("Can't convert to usize");
         if i % 2 == 0 {
             first_set.push(entry);
-        }
-        else {
+        } else {
             second_set.push(entry);
         }
     }
