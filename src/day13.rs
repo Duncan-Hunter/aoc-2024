@@ -106,7 +106,6 @@ pub fn part_2(input_uri: &str) -> f64 {
             Some(x) => {
                 total_cost += x[0] * 3.0;
                 total_cost += x[1] * 1.0;
-                dbg!(x);
             }
             None => {
                 println!("No solution")
