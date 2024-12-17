@@ -29,7 +29,7 @@ pub fn input_to_grid_map(input: &str) -> HashMap<(usize, usize), char> {
     grid
 }
 
-fn display_grid_map(grid: &HashMap<(usize, usize), char>) {
+pub fn display_grid_map(grid: &HashMap<(usize, usize), char>) {
     let mut vec_grid: Vec<Vec<char>> = Vec::new();
     let max_x = grid.keys().map(|(x, _)| x).max().unwrap();
     let max_y = grid.keys().map(|(_, y)| y).max().unwrap();
@@ -44,4 +44,26 @@ fn display_grid_map(grid: &HashMap<(usize, usize), char>) {
         let s = line.iter().collect::<String>();
         println!("{s}");
     }
+}
+
+pub fn find_char(grid: &HashMap<(usize, usize), char>, ch: char) -> Option<(usize, usize)> {
+    for ((i, j), c) in grid {
+        if *c == ch {
+            return Some((*i, *j));
+        }
+    }
+    None
+}
+
+pub fn next_xy(x: usize, y: usize, direction: char) -> Option<(usize, usize)> {
+    let direction: (isize, isize) = match direction {
+        '^' => (-1, 0),
+        '>' => (0, 1),
+        'v' => (1, 0),
+        '<' => (0, -1),
+        _ => return None,
+    };
+    let next_x = x.checked_add_signed(direction.0)?;
+    let next_y = y.checked_add_signed(direction.1)?;
+    Some((next_x, next_y))
 }
