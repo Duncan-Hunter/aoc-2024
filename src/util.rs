@@ -1,4 +1,9 @@
-use std::{collections::HashMap, fs, str::FromStr};
+use std::{
+    collections::{HashMap, HashSet},
+    fs,
+    hash::Hash,
+    str::FromStr,
+};
 
 pub fn read_data_from_file(uri: &str) -> String {
     let contents = fs::read_to_string(uri).expect("Should have been able to read the file");
@@ -66,4 +71,20 @@ pub fn next_xy(x: usize, y: usize, direction: char) -> Option<(usize, usize)> {
     let next_x = x.checked_add_signed(direction.0)?;
     let next_y = y.checked_add_signed(direction.1)?;
     Some((next_x, next_y))
+}
+
+pub fn min_in_hashset<T: Hash + Eq + Copy>(
+    queue: &HashSet<T>,
+    distances: &mut HashMap<T, usize>,
+) -> T {
+    let mut min_distance = usize::MAX;
+    let mut min_node: T = *queue.iter().next().expect("Queue should have entries");
+    for node in queue.iter() {
+        let distance = *distances.entry(*node).or_insert(usize::MAX);
+        if distance < min_distance {
+            min_distance = distance;
+            min_node = *node;
+        }
+    }
+    min_node
 }
