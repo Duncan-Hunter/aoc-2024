@@ -13,7 +13,8 @@
 // use day13::{part_1, part_2};
 // use day14::{part_1, part_2};
 // use day15::{part_1, part_2};
-use day16::{part_1, part_2};
+// use day16::{part_1, part_2};
+use day17::{part_1, part_2};
 
 pub mod day1;
 pub mod day10;
@@ -23,6 +24,7 @@ pub mod day13;
 pub mod day14;
 pub mod day15;
 pub mod day16;
+pub mod day17;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -35,8 +37,7 @@ pub mod day9;
 pub mod util;
 
 fn main() {
-    let part_1_answer = part_1("data/day16/puzzle.txt");
+    let part_1_answer = part_1("data/day17/puzzle.txt");
     println!("{part_1_answer}");
-    let part_2_answer = part_2("data/day16/puzzle.txt");
-    println!("{part_2_answer}");
+    part_2("data/day17/puzzle.txt");
 }
